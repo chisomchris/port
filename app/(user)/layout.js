@@ -1,5 +1,5 @@
-import { Home } from "../components/Home/Home";
+import { Home } from "@components/Home/Home";
 
-export default function DashBoardLayout({ children }) {
+export default function Layout({ children }) {
     return <Home>{children}</Home>;
 }

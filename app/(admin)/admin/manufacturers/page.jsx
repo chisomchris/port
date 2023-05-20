@@ -1,4 +1,4 @@
-import { Main } from "@/app/components/Main/Main";
+import { Main } from "@components/Main/Main";
 
 export const metadata = {
     title: "Manufacturers List | Admin Dashboard",

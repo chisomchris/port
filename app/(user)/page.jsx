@@ -1,13 +1,15 @@
-import { Main } from '../components/Main/Main'
+import { Main } from '@components/Main/Main'
 
 export const metadata = {
     title: "Dashboard",
 };
 
-export default function DashBoard() {
+export default function Page() {
     return (
-        // <Main title={'Dashboard'}>
-            <p>User dashboard</p>
-        // </Main>
+        <>
+            <Main title={'Dashboard'}>
+                <p>User dashboard</p>
+            </Main>
+        </>
     )
 }
