@@ -11,7 +11,7 @@ export const Header = ({ children }) => {
             h='4rem'
             align='flex-end'
         >
-            <Box w='100%' >{children}</Box>
+            <Box w='100%'>{children}</Box>
         </Flex>
     )
 }

@@ -25,7 +25,7 @@ export const LeftSideBar = ({ isAdmin }) => {
         { url: 'Create Distributor', href: '/distributors/add', icon: BsPersonFillAdd },
         { url: 'Settings', href: '/settings', icon: GoSettings },
     ]
-    
+
     return (
         <Box
             bg='white'

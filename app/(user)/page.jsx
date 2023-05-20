@@ -6,8 +6,8 @@ export const metadata = {
 
 export default function DashBoard() {
     return (
-        <Main title={'Dashboard'}>
+        // <Main title={'Dashboard'}>
             <p>User dashboard</p>
-        </Main>
+        // </Main>
     )
 }
