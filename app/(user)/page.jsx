@@ -1,19 +1,14 @@
 'use client'
 import { useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation'
+import { useToken } from '@lib/useToken'
 
-export default function Layout({ }) {
-  const { data: session, status } = useSession();
-  
-  if (status === 'loading') {
-    return <h2>Loading...</h2>
-  }
-
-  if (status === 'authenticated') {
-    return <p>{JSON.stringify(session)}</p>;
-  }
+export default async function Page() {
+  const { data } = useSession();
+  const user = useToken(data)
 
   return (
-    redirect('/auth/login')
+    <div className='min-h-[calc(100dvh-56px)] px-4'>
+      <p>{user?.email}</p>
+    </div>
   )
 }

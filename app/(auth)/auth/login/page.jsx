@@ -2,7 +2,6 @@ import UI from "./UI";
 
 export const metadata = {
     title: 'Login',
-    description: 'please enter your login'
 }
 
 const Page = () => {
