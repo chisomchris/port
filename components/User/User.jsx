@@ -1,9 +1,10 @@
 import { FaPlus, FaUser } from 'react-icons/fa'
-import { useSession} from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { useToken } from '@lib/useToken'
 
 export const User = ({ isMobile }) => {
-    const user = useToken( useSession().data )
+    const user = useToken(useSession().data)
+
     return (
         <div className={`mt-6 mb-6 flex pr-4 ${isMobile ? 'gap-4' : 'gap-0'} ${isMobile ? 'flex-row' : 'flex-col'} items-center`} >
             <div className={`grid place-items-center rounded-full relative ${isMobile ? 'h-[3rem]' : 'h-[5.5rem]'} ${isMobile ? 'w-[3rem]' : 'w-[5.5rem]'} border-2 border-solid border-[#ddd]`}>

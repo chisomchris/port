@@ -2,7 +2,8 @@
 import { useSession } from 'next-auth/react';
 import { useToken } from '@lib/useToken'
 
-export default async function Page() {
+
+export default function Page() {
   const { data } = useSession();
   const user = useToken(data)
 

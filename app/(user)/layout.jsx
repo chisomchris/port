@@ -1,17 +1,17 @@
-'use client'
-import { redirect } from 'next/navigation'
 import { Home } from "@components/Home/Home"
-import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@lib/auth'
+import { redirect } from 'next/navigation'
+import { useToken } from '@lib/useToken'
 
-const Layout = ({ children }) => {
-    const { data: session, status } = useSession();
-
-    if (session && status === 'authenticated') {
-        return <Home>{children}</Home>
+const Layout = async ({ children }) => {
+    const session = await getServerSession(authOptions)
+    
+    if (!session) {
+        redirect('/auth/login')
     }
-    return redirect('/auth/login')
-
-
+    const user = useToken(session)
+    return <Home>{children}</Home>
 }
 
 export default Layout
