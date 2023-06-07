@@ -123,10 +123,10 @@ export const LeftSideBar = ({ isAdmin }) => {
 
 export const RightSideBar = () => {
     return (
-        <div className='hidden md:block'>
-            <div className='bg-white min-h-[100dvh] w-[240px] px-6'>
+        <div className='hidden md:block bg-white'>
+            <div className='min-h-[100dvh] w-[240px] px-6'>
                 <Header>
-                    <button className='px-0 py-1 w-full flex items-center justify-between bg-transparent border-none text-[1.125rem]'
+                    <button className='px-4 py-1 w-full flex items-center justify-between bg-transparent border-none text-[1.125rem] hover:shadow-[inset_0_0_10px_rgba(0,255,0,0.125)]'
                         onClick={
                             () => {
                                 signOut()

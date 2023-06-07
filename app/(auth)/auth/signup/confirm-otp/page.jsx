@@ -6,7 +6,6 @@ export default function Page() {
     const otpRef = useRef()
     const [showResend, setShowResend] = useState(false)
     const [invalid, setInvalid] = useState(false)
-    const [reqError, setReqError] = useState('')
     const [loading, setLoading] = useState(false)
     const searchParams = useSearchParams();
     const router = useRouter()
@@ -42,7 +41,7 @@ export default function Page() {
     const resendOTP = async () => {
         if (email) {
             try {
-                fetch('/api/otp/confirm', {
+                fetch('/api/otp/resend', {
                     method: 'POST',
                     body: JSON.stringify(email),
                     headers: { "Content-Type": "application/json" }

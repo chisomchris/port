@@ -3,10 +3,8 @@ export const Button = ({ isLoading }) => {
         <input
             type='submit'
             className="bg-primary hover:bg-green-900 text-white w-full rounded-none font-[500] py-2 px-4  focus:outline-none disabled:bg-[#303030]"
-            value={isLoading ? 'Loading...' : 'Sign In'}
+            value={isLoading ? 'Signing In...' : 'Sign In'}
             disabled={isLoading}
         />
     )
 }
-
-// redeploy
