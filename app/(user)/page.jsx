@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@lib/auth'
 import { useToken } from '@lib/useToken'
-import Link from 'next/navigation'
+// import Link from 'next/navigation'
 import { Banner } from '@components/Banner'
 import { Card } from '@components/Card'
 
@@ -43,7 +43,7 @@ export default async function Page() {
       </header>
       <Banner name={user?.organization} email={user?.email} phone={user?.phone} />
       <h2 className='mt-4 font-bold text-xl pt-4 pb-3'>Distributors</h2>
-      {distributors.length ? (<>
+      {distributors.length ?
         <ul className='grid grid-layout gap-6 pb-6'>
           {distributors.map((distributor, index) => {
             return (
@@ -52,12 +52,10 @@ export default async function Page() {
               </li>
             )
           })}
-        </ul>
-      </>) : (<>
-        <p>You don&#39;t have any Distributor yet. Click <Link className='font-bold text-green-900' href='/distributors/add'>here</Link> to add distributor</p>
-      </>)
-      }
-      {/* <>{JSON.stringify(data)}</> */}
+        </ul> :
+        <p>
+          You dont have any Distributor yet. Click <a className='font-bold text-green-900' href='/distributors/add'>here</a> to add distributor
+        </p>}
     </div>
   )
 }

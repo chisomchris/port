@@ -20,12 +20,14 @@ export default function Page() {
             try {
                 const res = await fetch('/api/otp/confirm', {
                     method: 'POST',
-                    body: JSON.stringify(otp),
+                    body: JSON.stringify({ otp }),
                     headers: { "Content-Type": "application/json" }
                 })
                 const data = await res.json()
+                console.log(data)
                 setLoading(false)
                 if (res.ok && res.status === 200 && data) {
+
                     return router.push('/auth/login')
                 }
                 if (res.status !== 200) {
@@ -67,15 +69,15 @@ export default function Page() {
             <div className='w-full p-4 max-w-[520px] mx-auto'>
                 <h2 className='font-bold text-2xl text-green-900 mb-4'>Verify Your Identity</h2>
                 <p>A verification code has been sent to <strong>{email}</strong>. Enter the code to continue and be redirected.</p>
-                <div className=' py-4 min-[520px]:flex min-[520px]:items-center'>
-                    {invalid && <p className='text-red-400'>Invalid OTP</p>}
+                <div className=' py-4 min-[520px]:flex min-[520px]:items-center relative'>
+                    {invalid && <p className='text-red-400 min-[520px]:absolute min-[520px]:top-[85%]'>Invalid OTP</p>}
                     <input className='shadow-[inset_0px_0px_4px_2px_rgba(0,0,0,0.25)] outline-none mr-2 h-12 text-xl px-4 focus:border-solid focus:border-2 focus:border-green-900' type='text' name='input-one' ref={otpRef} onInput={() => {
                         if (invalid) { setInvalid(false) }
                     }} />
 
                     <button className='bg-green-900 text-white py-2 px-6 mt-4 disabled:bg-[#444] hover:bg-green-700 h-12 min-[520px]:mt-0' onClick={sendOTP} disabled={loading}>{loading ? 'Verifying...' : 'Verify Account'}</button>
                 </div>
-                <div className={`${showResend ? 'block' : 'hidden'}`}>
+                <div className={`${showResend ? 'block' : 'hidden'} min-[520px]:my-6`}>
                     <p>Didn&#39;t get an OTP email? </p>
                     <button className='bg-green-900 text-white py-2 px-6 h-12 my-4 disabled:bg-green-600 hover:bg-green-800' onClick={resendOTP} disabled={loading}>Send Again</button>
                 </div>
