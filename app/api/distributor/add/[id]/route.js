@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import { headers } from 'next/headers'
 
 export async function POST(request, { params }) {
-    const dataURL = new URL(request.url) 
-    console.log(dataURL)
     const { email } = await request.json()
     const id = params.id;
     const Headers = headers()

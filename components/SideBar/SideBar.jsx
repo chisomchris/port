@@ -29,7 +29,7 @@ export const LeftSideBar = ({ isAdmin }) => {
 
     return (
         <div className='bg-white'>
-            <div className='hidden md:block min-h-[100dvh] w-[240px] px-6'>
+            <div className='hidden desktop:block min-h-[99dvh] w-[240px] px-6 sticky top-0'>
                 <Header>
                     <div className='flex items-center gap-6 '>
                         <BsFill0CircleFill className='text-[1.5rem] ' /> {'  '} <h2 className='m-0'>Logo</h2>
@@ -63,7 +63,7 @@ export const LeftSideBar = ({ isAdmin }) => {
                     }
                 </ul>
             </div>
-            <div className='px-4 block md:hidden'>
+            <div className='px-4 block desktop:hidden'>
                 <header className='flex items-center justify-between'>
                     <div className='flex items-center gap-6 py-4'>
                         <BsFill0CircleFill className='text-[1.5rem] ' /> {'  '} <h2 className='m-0'>Logo</h2>
@@ -123,8 +123,8 @@ export const LeftSideBar = ({ isAdmin }) => {
 
 export const RightSideBar = () => {
     return (
-        <div className='hidden md:block bg-white'>
-            <div className='min-h-[100dvh] w-[240px] px-6'>
+        <div className='hidden desktop:block bg-white'>
+            <div className='min-h-[99dvh] w-[250px] px-6 sticky top-0'>
                 <Header>
                     <button className='px-4 py-1 w-full flex items-center justify-between bg-transparent border-none text-[1.125rem] hover:shadow-[inset_0_0_10px_rgba(0,255,0,0.125)]'
                         onClick={
