@@ -27,7 +27,6 @@ export default function Page() {
                 console.log(data)
                 setLoading(false)
                 if (res.ok && res.status === 200 && data) {
-
                     return router.push('/auth/login')
                 }
                 if (res.status !== 200) {
@@ -51,7 +50,7 @@ export default function Page() {
                 setShowResend(false)
                 setTimeout(() => {
                     setShowResend(true)
-                }, 45000)
+                }, 30000)
             } catch (error) {
                 console.error(error.message)
             }
@@ -61,7 +60,7 @@ export default function Page() {
     useEffect(() => {
         setTimeout(() => {
             setShowResend(true)
-        }, 45000)
+        }, 30000)
     }, [])
 
     return (
