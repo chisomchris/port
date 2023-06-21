@@ -45,7 +45,7 @@ const UI = () => {
             password: yup.string().trim().required('Password is required').test('len', 'Must be more than 5 characters', val => val.length >= 6).test('len1', 'Must not exceed 50 characters', val => val.length < 51),
             email: yup.string().trim().email('Invalid Email Address').required('Email is required'),
         }),
-        onSubmit
+        onSubmit: onSubmit,
     })
 
     return (

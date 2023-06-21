@@ -1,8 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 import { usePathname } from 'next/navigation';
-import { BsFill0CircleFill, BsPersonFillAdd } from 'react-icons/bs'
+import { BsFill0CircleFill, BsPersonFillAdd, BsBuildingsFill } from 'react-icons/bs'
 import { BiLogInCircle } from 'react-icons/bi'
+import { GrBusinessService } from 'react-icons/gr'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { MdPrecisionManufacturing, MdSpaceDashboard } from 'react-icons/md'
 import Link from 'next/link';
@@ -24,6 +25,8 @@ export const LeftSideBar = ({ isAdmin }) => {
     const userLinks = [
         { url: 'Dashboard', href: '/', icon: MdSpaceDashboard },
         { url: 'Add Distributor', href: '/distributors/add', icon: BsPersonFillAdd },
+        { url: 'Products', href: '/products', icon: GrBusinessService },
+        { url: 'Branches', href: '/branches', icon: BsBuildingsFill },
     ]
     const listyle = `py-4 flex gap-6 items-center`
 

@@ -1,10 +1,15 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@lib/auth'
+// import { redirect } from 'next/navigation'
 import { useToken } from '@lib/useToken'
 import Client from './ClientUI'
 
 export default async function Page() {
   const session = await getServerSession(authOptions)
+  // if (!session) {
+    // redirect('/auth/login')
+  // }
+
   const user = useToken(session)
   if (!user) {
     return
@@ -20,7 +25,7 @@ export default async function Page() {
   const distributors = data.data
 
   return (
-    <Client distributors={distributors} user={user}/>
+    <Client distributors={distributors} user={user} />
   )
 }
 
