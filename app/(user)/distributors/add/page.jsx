@@ -5,10 +5,10 @@ import { useState } from "react";
 import Link from 'next/link'
 
 export default function Page() {
-    const { data } = useSession();
-    const user = data.user
+    const { data : session } = useSession();
+    const user = session?.user
     const URL = '/api/distributor/add/' + user?.id
-    const token = user?.token
+    const token = session?.accessToken
     const [error, setError] = useState('')
     const [email, setEmail] = useState('')
     const [disabled, setDisabled] = useState(false)
@@ -17,7 +17,7 @@ export default function Page() {
     const onSubmit = async (e) => {
         e.preventDefault()
         const email = e.target.email.value
-        if (email && token && user?.user) {
+        if (email && token && user?.id) {
             setDisabled(true)
             const res = await fetch(URL, {
                 method: 'POST',
