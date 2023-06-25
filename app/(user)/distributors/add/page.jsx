@@ -1,14 +1,13 @@
 'use client'
 import { Header } from "@components/Home/Header";
 import { useSession } from 'next-auth/react';
-import { useToken } from '@lib/useToken'
 import { useState } from "react";
 import Link from 'next/link'
 
 export default function Page() {
     const { data } = useSession();
-    const user = useToken(data)
-    const URL = '/api/distributor/add/' + user?.user
+    const user = data.user
+    const URL = '/api/distributor/add/' + user?.id
     const token = user?.token
     const [error, setError] = useState('')
     const [email, setEmail] = useState('')

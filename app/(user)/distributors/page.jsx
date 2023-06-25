@@ -1,21 +1,20 @@
 import { DateUI } from '@app/(user)/Date'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@lib/auth'
-import { useToken } from '@lib/useToken'
 import Link from 'next/link'
 import { Client } from './Client'
 
 export default async function Page() {
     const session = await getServerSession(authOptions);
-    const user = useToken(session);
+    const user = session.user;
     if (!user) {
         return
     }
 
-    const res = await fetch(process.env.API_BASE_URL + '/users/' + user?.user + '/distributors', {
+    const res = await fetch(process.env.API_BASE_URL + '/users/' + user?.id + '/distributors', {
         method: 'GET',
         headers: {
-            Authorization: `Bearer ${user?.token}`
+            Authorization: `Bearer ${session?.accessToken}`
         }
     })
     const data = await res.json()
