@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     const { otp, password } = await request.json()
-    const response = await fetch(process.env.API_BASE_URL + '/changepassword', {
+    const response = await fetch(process.env.API_BASE_URL + '/change-password', {
         method: 'POST',
         body: JSON.stringify({ otp, password }),
         headers: {

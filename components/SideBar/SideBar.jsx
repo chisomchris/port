@@ -1,9 +1,10 @@
 'use client'
 import React, { useState } from 'react'
 import { usePathname } from 'next/navigation';
-import { BsFill0CircleFill, BsPersonFillAdd, BsBuildingsFill } from 'react-icons/bs'
+import { BsFill0CircleFill, BsBuildingsFill } from 'react-icons/bs'
 import { BiLogInCircle } from 'react-icons/bi'
-import { GrBusinessService } from 'react-icons/gr'
+import { HiUserGroup } from 'react-icons/hi'
+import { ProductIcon } from '@components/ProductIcon'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { MdPrecisionManufacturing, MdSpaceDashboard } from 'react-icons/md'
 import Link from 'next/link';
@@ -24,8 +25,8 @@ export const LeftSideBar = ({ isAdmin }) => {
     ]
     const userLinks = [
         { url: 'Dashboard', href: '/', icon: MdSpaceDashboard },
-        { url: 'Add Distributor', href: '/distributors/add', icon: BsPersonFillAdd },
-        { url: 'Products', href: '/products', icon: GrBusinessService },
+        { url: 'Distributors', href: '/distributors', icon: HiUserGroup },
+        { url: 'Products', href: '/products', icon: ProductIcon },
         { url: 'Branches', href: '/branches', icon: BsBuildingsFill },
     ]
     const listyle = `py-4 flex gap-6 items-center`
@@ -45,7 +46,7 @@ export const LeftSideBar = ({ isAdmin }) => {
                                 adminLinks.map((link, index) => {
                                     return <li
                                         key={index}
-                                        className={`${link.href === pathname ? 'text-green-700 ' : 'text-[#333] '}` + listyle}
+                                        className={`${(pathname.startsWith(link.href) && link.href !== '/' || link.href === pathname)  ? 'text-green-700 ' : 'text-[#333] '}` + listyle}
                                     >
                                         <link.icon className='text-[1.5rem]' />
                                         <Link href={link.href}>{link.url}</Link>
@@ -56,7 +57,7 @@ export const LeftSideBar = ({ isAdmin }) => {
                             {userLinks.map((link, index) => {
                                 return <li
                                     key={index}
-                                    className={`${link.href === pathname ? 'text-green-700 ' : 'text-[#333] '}` + listyle}
+                                    className={`${(pathname.startsWith(link.href) && link.href !== '/' || link.href === pathname) ? 'text-green-700 ' : 'text-[#333] '}` + listyle}
                                 >
                                     <link.icon className='text-[1.5rem]' />
                                     <Link href={link.href}>{link.url}</Link>
@@ -84,7 +85,7 @@ export const LeftSideBar = ({ isAdmin }) => {
                                             onClick={() => {
                                                 setExpandMobile(false)
                                             }}
-                                            className={`${link.href === pathname ? 'text-green-700 ' : 'text-[#333] '}` + listyle}
+                                            className={`${(pathname.startsWith(link.href) && link.href !== '/' || link.href === pathname) ? 'text-green-700 ' : 'text-[#333] '}` + listyle}
                                         >
                                             <link.icon className='text-[1.5rem]' />
                                             <Link href={link.href}>{link.url}</Link>
@@ -98,7 +99,7 @@ export const LeftSideBar = ({ isAdmin }) => {
                                         onClick={() => {
                                             setExpandMobile(false)
                                         }}
-                                        className={`${link.href === pathname ? 'text-green-700 ' : 'text-[#333] '}` + listyle}
+                                        className={`${(pathname.startsWith(link.href) && link.href !== '/' || link.href === pathname)  ? 'text-green-700 ' : 'text-[#333] '}` + listyle}
                                     >
                                         <link.icon className='text-[1.5rem]' />
                                         <Link href={link.href}>{link.url}</Link>

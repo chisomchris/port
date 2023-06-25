@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    const { email, name, cac, address, city, country, password, postal, state, phone } = await request.json()
+    const { email, name, cac, address, city, country, password, postal, state, phone, product, branches, industry } = await request.json()
 
-    const response = await fetch(process.env.API_BASE_URL + '/signup', {
+    const response = await fetch(process.env.API_BASE_URL + '/users', {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -16,11 +16,10 @@ export async function POST(request) {
                 city,
                 state,
                 address,
-                // postal
             },
-            products: {name: 'Apple'},
+            products: {name: product },
             branches: {name: 'Angludi'},
-            industry: 'Fashion'
+            industry
         }),
         headers: {
             "Content-Type": 'application/json',

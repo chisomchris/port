@@ -1,8 +1,23 @@
 import { DateUI } from '@app/(user)/Date'
-// import { authenticate } from '@lib/authenticate'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@lib/auth'
 
 export default async function Page() {
-    // const session = await authenticate();
+    const session = await getServerSession(authOptions);
+    const user = session.user;
+
+    if (!user) {
+        return
+    }
+
+    const res = await fetch(process.env.API_BASE_URL + '/users/' + user?.id + '/products', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${session?.accessToken}`
+        }
+    })
+    const data = await res.json()
+    const products = data.data
 
     return (
         <div className='min-h-[calc(100dvh-56px)] px-4 w-full'>

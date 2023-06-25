@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     const { email } = await request.json()
-    const response = await fetch(process.env.API_BASE_URL + '/forgotpassword', {
+    const response = await fetch(process.env.API_BASE_URL + '/forgot-password', {
         method: 'POST',
         body: JSON.stringify({ email }),
         headers: {

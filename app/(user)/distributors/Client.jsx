@@ -1,15 +1,20 @@
 'use client'
-import { useState } from 'react'
-import { Banner } from '@components/Banner'
+import { Overlay } from '../Overlay'
 import { Card } from '@components/Card'
-import { Overlay } from './Overlay'
-import { DateUI } from './Date'
+import { useState } from 'react'
 
-export default function Client({ distributors: dist, user }) {
+export function Client({ distributors: dist, user }) {
     const [showOverlay, setShowOverlay] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const [toDelete, setToDelete] = useState('')
     const [distributors, setDistributors] = useState(dist)
+    const bgs = [
+        'bg-purple-500',
+        'bg-red-400',
+        'bg-gray-700',
+        'bg-green-600',
+        'bg-blue-600',
+    ]
 
     const showModal = (id) => {
         setToDelete(id)
@@ -21,13 +26,13 @@ export default function Client({ distributors: dist, user }) {
     }
 
     const deleteDistributor = async () => {
-        if (user.id && toDelete) {
+        if (user.user && toDelete) {
             try {
                 setDisabled(true)
-                const res = await fetch(`/api/distributors/${user.id}/${toDelete}`, {
+                const res = await fetch(`/api/distributors/${user.user}/${toDelete}`, {
                     method: 'DELETE',
                     headers: {
-                        Authorization: `Bearer ${accessToken}`
+                        Authorization: `Bearer ${user.token}`
                     }
                 })
                 const data = await res.json()
@@ -37,7 +42,7 @@ export default function Client({ distributors: dist, user }) {
                     setDisabled(false)
                     hideModal()
                 }
-                if (!(res.ok && data)) {
+                if (!res.ok && data) {
                     console.log(data)
                     alert('error')
                 }
@@ -47,29 +52,13 @@ export default function Client({ distributors: dist, user }) {
         }
     }
 
-    const bgs = [
-        'bg-purple-500',
-        'bg-red-400',
-        'bg-gray-700',
-        'bg-green-600',
-        'bg-blue-600',
-    ]
-
     const getIndex = (index) => {
         return index % bgs.length
     }
 
     return (
-        <div className='min-h-[calc(100dvh-56px)] px-4 w-full'>
+        <div className='min-h-[calc(100dvh-56px)] w-full'>
             <Overlay display={showOverlay} hide={hideModal} deleteDistributor={deleteDistributor} toDelete={toDelete} disabled={disabled} />
-            <header className='flex py-4 justify-between items-center'>
-                <h1 className='font-bold text-2xl'>Dashboard</h1>
-                <div>
-                    <DateUI />
-                </div>
-            </header>
-            <Banner name={user?.name} email={user?.email} phone={user?.phone} />
-            <h2 className='mt-4 font-bold text-xl pt-4 pb-3'>Distributors</h2>
             {distributors && distributors.length ?
                 <ul className='grid grid-layout gap-6 pb-6'>
                     {distributors.map((distributor, index) => {
@@ -85,6 +74,5 @@ export default function Client({ distributors: dist, user }) {
                 </p>}
         </div>
     )
+
 }
-
-

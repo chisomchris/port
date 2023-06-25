@@ -1,24 +1,19 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@lib/auth'
-// import { redirect } from 'next/navigation'
-import { useToken } from '@lib/useToken'
 import Client from './ClientUI'
 
 export default async function Page() {
-  const session = await getServerSession(authOptions)
-  // if (!session) {
-    // redirect('/auth/login')
-  // }
-
-  const user = useToken(session)
-  if (!user) {
+  const  session  = await getServerSession(authOptions);
+  if (!session) {
     return
   }
+  
+  const user = session?.user;
 
-  const res = await fetch(process.env.API_BASE_URL + '/allDistributor/' + user?.user, {
+  const res = await fetch(process.env.API_BASE_URL + '/users/' + user?.id + '/distributors', {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${user?.token}`
+      Authorization: `Bearer ${session.accessToken}`
     }
   })
   const data = await res.json()
@@ -28,5 +23,3 @@ export default async function Page() {
     <Client distributors={distributors} user={user} />
   )
 }
-
-
