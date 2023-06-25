@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function Page() {
     const { data : session } = useSession();
     const user = session?.user
-    const URL = '/api/distributor/add/' + user?.id
+    const URL = '/api/users/' + user?.id + '/distributors'
     const token = session?.accessToken
     const [error, setError] = useState('')
     const [email, setEmail] = useState('')

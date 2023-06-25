@@ -25,7 +25,7 @@ const Page = async ({ params }) => {
     return (
         <div className='p-4 min-h-[calc(100dvh-56px)] w-full desktop:px-8'>
             <header className='flex py-4 justify-between items-center'>
-                <Link href='/distributors' className='bg-green-800 text-white py-2 px-8 rounded-md'>Back</Link>
+                <Link href='/' className='bg-green-800 text-white py-2 px-8 rounded-md'>Back</Link>
                 <div>
                     <DateUI />
                 </div>
