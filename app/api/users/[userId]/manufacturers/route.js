@@ -6,7 +6,7 @@ export async function GET(request, { params }) {
   const Headers = headers();
   const token = Headers.get("Authorization");
   const response = await fetch(
-    process.env.API_BASE_URL + "/users" + id + "/manufacturers",
+    process.env.API_BASE_URL + "/users/" + id + "/manufacturers",
     {
       method: "GET",
       headers: {

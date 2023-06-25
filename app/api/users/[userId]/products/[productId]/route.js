@@ -7,7 +7,7 @@ export async function GET(request, { params }) {
   const Headers = headers();
   const token = Headers.get("Authorization");
   const response = await fetch(
-    process.env.API_BASE_URL + "/users" + id + "/products/" + dId,
+    process.env.API_BASE_URL + "/users/" + id + "/products/" + dId,
     {
       method: "GET",
       headers: {
@@ -28,7 +28,7 @@ export async function DELETE(request, { params }) {
   const Headers = headers();
   const token = Headers.get("Authorization");
   const response = await fetch(
-    process.env.API_BASE_URL + "/users" + id + "/products/" + dId,
+    process.env.API_BASE_URL + "/users/" + id + "/products/" + dId,
     {
       method: "DELETE",
       headers: {

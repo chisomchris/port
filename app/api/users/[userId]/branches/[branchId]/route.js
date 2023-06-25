@@ -8,7 +8,7 @@ export async function DELETE(request, { params }) {
   const Headers = headers();
   const token = Headers.get("Authorization");
   const response = await fetch(
-    process.env.API_BASE_URL + "/users" + id + "/branches/" + dId,
+    process.env.API_BASE_URL + "/users/" + id + "/branches/" + dId,
     {
       method: "DELETE",
       headers: {
