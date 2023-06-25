@@ -6,7 +6,7 @@ export async function GET(request, { params }) {
   const Headers = headers();
   const token = Headers.get("Authorization");
   const response = await fetch(
-    process.env.API_BASE_URL + "/users" + id + "/distributors",
+    process.env.API_BASE_URL + "/users/" + id + "/distributors",
     {
       method: "GET",
       headers: {
@@ -27,7 +27,7 @@ export async function POST(request, { params }) {
   const Headers = headers();
   const token = Headers.get("Authorization");
   const response = await fetch(
-    process.env.API_BASE_URL + "/users" + id + "/distributors",
+    process.env.API_BASE_URL + "/users/" + id + "/distributors",
     {
       method: "POST",
       body: JSON.stringify({ email }),
