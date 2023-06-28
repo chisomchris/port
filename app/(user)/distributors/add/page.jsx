@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from 'next/link'
 
 export default function Page() {
-    const { data : session } = useSession();
+    const { data: session } = useSession();
     const user = session?.user
     const URL = '/api/users/' + user?.id + '/distributors'
     const token = session?.accessToken
@@ -32,6 +32,7 @@ export default function Page() {
             if (res.status === 200 && data) {
                 setDisabled(false)
                 setShowModal(true)
+                setEmail('')
             }
         }
     }

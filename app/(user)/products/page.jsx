@@ -17,7 +17,7 @@ export default async function Page() {
         }
     })
     const data = await res.json()
-    const products = data.data
+    const { products } = data.data
 
     return (
         <div className='min-h-[calc(100dvh-56px)] px-4 w-full'>
@@ -27,6 +27,13 @@ export default async function Page() {
                     <DateUI />
                 </div>
             </header>
+            <section>
+                <ul>
+                    {
+                        products.map(product => <li key={product._id}>{product.name}</li>)
+                    }
+                </ul>
+            </section>
         </div>
     )
 }

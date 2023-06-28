@@ -33,7 +33,7 @@ export default async function Page() {
                 <Link href='/distributors/add' className='py-2 px-6 bg-green-700 rounded-md text-white'>Add Retailer</Link>
             </div>
 
-            <Client distributors={distributors} user={user} accessToken={session.accessToken} />
+            <Client distributors={distributors} user={user} accessToken={session?.accessToken} />
         </div>
     )
 }

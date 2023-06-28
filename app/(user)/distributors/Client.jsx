@@ -3,7 +3,7 @@ import { Overlay } from '../Overlay'
 import { Card } from '@components/Card'
 import { useState } from 'react'
 
-export function Client({ distributors: dist, user }) {
+export function Client({ distributors: dist, user, accessToken }) {
     const [showOverlay, setShowOverlay] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const [toDelete, setToDelete] = useState('')
@@ -26,13 +26,13 @@ export function Client({ distributors: dist, user }) {
     }
 
     const deleteDistributor = async () => {
-        if (user.user && toDelete) {
+        if (user.id && toDelete) {
             try {
                 setDisabled(true)
-                const res = await fetch(`/api/distributors/${user.user}/${toDelete}`, {
+                const res = await fetch(`/api/users/${user.id}/distributors/${toDelete}`, {
                     method: 'DELETE',
                     headers: {
-                        Authorization: `Bearer ${user.token}`
+                        Authorization: `Bearer ${accessToken}`
                     }
                 })
                 const data = await res.json()
@@ -43,7 +43,6 @@ export function Client({ distributors: dist, user }) {
                     hideModal()
                 }
                 if (!res.ok && data) {
-                    console.log(data)
                     alert('error')
                 }
             } catch (error) {

@@ -27,6 +27,7 @@ export async function DELETE(request, { params }) {
   const dId = params.distributorId;
   const Headers = headers();
   const token = Headers.get("Authorization");
+  
   const response = await fetch(
     process.env.API_BASE_URL + "/users/" + id + "/distributors/" + dId,
     {

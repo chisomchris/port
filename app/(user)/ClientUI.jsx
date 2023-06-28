@@ -4,8 +4,11 @@ import { Banner } from '@components/Banner'
 import { Card } from '@components/Card'
 import { Overlay } from './Overlay'
 import { DateUI } from './Date'
+import Link from 'next/link'
+// import { useRouter } from 'next/navigation'
 
-export default function Client({ distributors: dist, user }) {
+export default function Client({ distributors: dist, user, accessToken }) {
+    // const router = useRouter();
     const [showOverlay, setShowOverlay] = useState(false)
     const [disabled, setDisabled] = useState(false)
     const [toDelete, setToDelete] = useState('')
@@ -24,7 +27,7 @@ export default function Client({ distributors: dist, user }) {
         if (user.id && toDelete) {
             try {
                 setDisabled(true)
-                const res = await fetch(`/api/distributors/${user.id}/${toDelete}`, {
+                const res = await fetch(`/api/users/${user.id}/distributors/${toDelete}`, {
                     method: 'DELETE',
                     headers: {
                         Authorization: `Bearer ${accessToken}`
@@ -34,12 +37,14 @@ export default function Client({ distributors: dist, user }) {
                 if (res.ok && data) {
                     const filtered = distributors.filter(distributor => distributor._id !== toDelete)
                     setDistributors(filtered)
+                    // router.refresh()
                     setDisabled(false)
                     hideModal()
                 }
                 if (!(res.ok && data)) {
-                    console.log(data)
-                    alert('error')
+                    alert('Cannot delete user!')
+                    setDisabled(false)
+                    hideModal()
                 }
             } catch (error) {
                 console.error(error)
@@ -69,20 +74,25 @@ export default function Client({ distributors: dist, user }) {
                 </div>
             </header>
             <Banner name={user?.name} email={user?.email} phone={user?.phone} />
-            <h2 className='mt-4 font-bold text-xl pt-4 pb-3'>Distributors</h2>
-            {distributors && distributors.length ?
-                <ul className='grid grid-layout gap-6 pb-6'>
-                    {distributors.map((distributor, index) => {
-                        return (
-                            <li key={distributor._id}>
-                                <Card name={distributor.organization} email={distributor.email} mobile={distributor.phone} color={bgs[getIndex(index)]} id={distributor._id} show={showModal} />
-                            </li>
-                        )
-                    })}
-                </ul> :
-                <p>
-                    You dont have any Distributor yet. Click <a className='font-bold text-green-900' href='/distributors/add'>here</a> to add distributor
-                </p>}
+            <section>
+                <div className='flex items-center justify-between'>
+                    <h2 className='mt-4 font-bold text-xl pt-4 pb-3'>Distributors</h2>
+                    <Link href='/distributors/add'>Add Distributor</Link>
+                </div>
+                {distributors && distributors.length ?
+                    <ul className='grid grid-layout gap-6 pb-6'>
+                        {distributors.map((distributor, index) => {
+                            return (
+                                <li key={distributor._id}>
+                                    <Card name={distributor.organization} email={distributor.email} mobile={distributor.phone} color={bgs[getIndex(index)]} id={distributor._id} show={showModal} />
+                                </li>
+                            )
+                        })}
+                    </ul> :
+                    <p>
+                        You dont have any Distributor yet. Click <a className='font-bold text-green-900' href='/distributors/add'>here</a> to add distributor
+                    </p>}
+            </section>
         </div>
     )
 }
